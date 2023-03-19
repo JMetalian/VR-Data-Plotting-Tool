@@ -17,23 +17,17 @@ UCalculatePercentage::UCalculatePercentage()
 }
 
 
-// Called when the game starts
 void UCalculatePercentage::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// ...
 	
 }
 
 
-// Called every frame
 void UCalculatePercentage::TickComponent(float DeltaTime, ELevelTick TickType,
                                          FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
- 
-	// ...
 }
 
 float UCalculatePercentage::CalculateTotalDataSum(UDataTable* DataSet)
@@ -51,7 +45,5 @@ float UCalculatePercentage::CalculateTotalDataSum(UDataTable* DataSet)
 
 float UCalculatePercentage::CalculateDataPercentage(float dataPoint=0.0f, float totalDataSum=1.0f)
 {
-		return 10.0f*dataPoint/totalDataSum;
+		return (dataPoint*10.0f)/totalDataSum;
 }
-
-//TODO FIND A WAY TO GET THE GRAPH IN RUN TIME
