@@ -4,13 +4,10 @@
 #include "Kismet/KismetMathLibrary.h"
 
 
-// Sets default values for this component's properties
 UAssignRandomColor::UAssignRandomColor()
 {
 	PrimaryComponentTick.bCanEverTick = true;
 }
-
-
 // Called when the game starts
 void UAssignRandomColor::BeginPlay()
 {
@@ -18,7 +15,6 @@ void UAssignRandomColor::BeginPlay()
 	Owner = GetOwner();
 	ColorizeBarrel();
 }
-
 void UAssignRandomColor::TickComponent(float DeltaTime, ELevelTick TickType,
                                        FActorComponentTickFunction* ThisTickFunction)
 {
