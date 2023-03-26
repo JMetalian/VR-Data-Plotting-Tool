@@ -23,4 +23,3 @@ void ADataContainerStruct::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
-

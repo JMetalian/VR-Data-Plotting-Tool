@@ -3,6 +3,8 @@
 
 #include "GenericSystem.h"
 
+#include "DataTableCreator.h"
+
 
 // Sets default values
 AGenericSystem::AGenericSystem()
@@ -15,6 +17,8 @@ AGenericSystem::AGenericSystem()
 void AGenericSystem::BeginPlay()
 {
 	Super::BeginPlay();
+	//create instance of data table creator
+
 	
 }
 

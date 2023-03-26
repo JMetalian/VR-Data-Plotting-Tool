@@ -35,7 +35,4 @@ struct FDummyDataStruct : public FTableRowBase
 	// This is the tooltip for our test variable.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Test Variables")
 	int32 OutVariable = 0;
-	
 };
-
-

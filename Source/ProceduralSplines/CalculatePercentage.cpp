@@ -22,7 +22,7 @@ void UCalculatePercentage::BeginPlay()
 	Super::BeginPlay();
 	
 }
-
+	
 
 void UCalculatePercentage::TickComponent(float DeltaTime, ELevelTick TickType,
                                          FActorComponentTickFunction* ThisTickFunction)
@@ -33,6 +33,7 @@ void UCalculatePercentage::TickComponent(float DeltaTime, ELevelTick TickType,
 float UCalculatePercentage::CalculateTotalDataSum(UDataTable* DataSet)
 {
 	float totalSum = 0.0f;
+	//TODO Gives a null, possible racing condition ?
 	TArray<FName> rowNames=DataSet->GetRowNames();
 	
 	for (auto rowName : rowNames)
