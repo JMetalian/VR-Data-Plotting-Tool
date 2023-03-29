@@ -18,18 +18,20 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System")
 		int GenericIndex=0;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System")
 		AActor* ResponsibleActorInScene=nullptr;
+	
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Generic System")
 		UDataTable* DataSet=nullptr;
 	
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Generic System",meta=(EditConditionHides))
 		int GenericIteratorLength=0;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System")
 		TSubclassOf<AActor> GenericClass;
 public:
@@ -38,4 +40,7 @@ public:
 
 private:
 	UDataTable* runTimeDataTable=nullptr;
+private:
+	void CreateRunTimeDT();
+	
 };
