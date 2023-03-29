@@ -25,6 +25,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 private:
-	UDataTable* runTimeDataTable=nullptr;
+	// UDataTable* runTimeDataTable=nullptr;
 
 };

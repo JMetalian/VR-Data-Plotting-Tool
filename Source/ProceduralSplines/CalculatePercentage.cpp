@@ -34,6 +34,10 @@ float UCalculatePercentage::CalculateTotalDataSum(UDataTable* DataSet)
 {
 	float totalSum = 0.0f;
 	//TODO Gives a null, possible racing condition ?
+	if(DataSet==nullptr)
+	{
+		return totalSum;
+	}
 	TArray<FName> rowNames=DataSet->GetRowNames();
 	
 	for (auto rowName : rowNames)
