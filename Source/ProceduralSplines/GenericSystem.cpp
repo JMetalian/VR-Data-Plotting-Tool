@@ -3,6 +3,7 @@
 
 #include "GenericSystem.h"
 
+#include "CalculatePercentage.h"
 #include "CSVLoader.h"
 #include "DataContainerStruct.h"
 
@@ -18,10 +19,19 @@ AGenericSystem::AGenericSystem()
 void AGenericSystem::BeginPlay()
 {
 	Super::BeginPlay();
-	//create instance of data table creator
-	CreateRunTimeDT();
+
+	auto percentageCalculator = FindComponentByClass<UCalculatePercentage>();
 	
-	DataSet = runTimeDataTable;
+	if(IsUsingCSV)
+	{
+		DataSet = CreateRunTimeDT();;
+		percentageCalculator->CalculateTotalDataSum(DataSet);
+	}
+	else
+	{
+		percentageCalculator->CalculateTotalDataSum(DataSet);
+	}
+	
 }
 
 // Called every frame
@@ -30,14 +40,15 @@ void AGenericSystem::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AGenericSystem::CreateRunTimeDT()
+UDataTable* AGenericSystem::CreateRunTimeDT()
 {
 	UClass* dataTableClasss = UDataTable::StaticClass(); // get a reference to the type of object we are going to use, in this case the basic DataTable, but you can have your own
-	runTimeDataTable = NewObject<UDataTable>(this, dataTableClasss, FName(TEXT("RunTimeTable"))); // create a new data table object
+	UDataTable* runTimeDataTable = NewObject<UDataTable>(this, dataTableClasss, FName(TEXT("RunTimeTable"))); // create a new data table object
 	runTimeDataTable->RowStruct = FDummyDataStruct::StaticStruct(); // set what kind of row structure we are going to use for our table, we assume that you included the example row structure here
 
 	//TODO Find a way to get the dataset dynamically
-	TArray<FString> CSVLines = CSVLoader::GetCSVFile("/DataFolder/dummy.csv"); // assuming you follow our example, load the csv as an array of strings
+	FString path = "/DataFolder/";
+	TArray<FString> CSVLines = CSVLoader::GetCSVFile(path.Append(DataSetName).Append(".csv")); // assuming you follow our example, load the csv as an array of strings
 
 	FDummyDataStruct rowType; // set the type of row we are going to use
 
@@ -59,5 +70,6 @@ void AGenericSystem::CreateRunTimeDT()
 		// Add the row to DT.
 		runTimeDataTable->AddRow(FName(*stringArray[0]), rowType);
 	}
+	return runTimeDataTable;
 }
 

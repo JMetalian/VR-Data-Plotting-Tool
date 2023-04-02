@@ -27,10 +27,10 @@ public:
 	                           FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Calculate Total Data Sum")
-	float CalculateTotalDataSum(UDataTable* DataSet);
+	void CalculateTotalDataSum(UDataTable* DataSet);
 	
 	UFUNCTION(BlueprintCallable, Category = "Calculate Percentage of Datas")
-	float CalculateDataPercentage(float dataPoint,  float totalDataSum);
+	float CalculateDataPercentage(float dataPoint);
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Total Data Sum")

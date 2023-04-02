@@ -24,7 +24,12 @@ public:
 	
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Generic System")
 		UDataTable* DataSet=nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System")
+		bool IsUsingCSV;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Generic System")
+	FString DataSetName;
 
 protected:
 	virtual void BeginPlay() override;
@@ -34,13 +39,13 @@ protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System")
 		TSubclassOf<AActor> GenericClass;
+
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	UDataTable* runTimeDataTable=nullptr;
-private:
-	void CreateRunTimeDT();
+	UDataTable* CreateRunTimeDT();
 	
 };

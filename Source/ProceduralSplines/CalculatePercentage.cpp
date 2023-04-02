@@ -12,8 +12,7 @@ UCalculatePercentage::UCalculatePercentage()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
-
-	// ...
+	
 }
 
 
@@ -22,7 +21,6 @@ void UCalculatePercentage::BeginPlay()
 	Super::BeginPlay();
 	
 }
-	
 
 void UCalculatePercentage::TickComponent(float DeltaTime, ELevelTick TickType,
                                          FActorComponentTickFunction* ThisTickFunction)
@@ -30,25 +28,21 @@ void UCalculatePercentage::TickComponent(float DeltaTime, ELevelTick TickType,
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 }
 
-float UCalculatePercentage::CalculateTotalDataSum(UDataTable* DataSet)
+void UCalculatePercentage::CalculateTotalDataSum(UDataTable* DataSet)
 {
-	float totalSum = 0.0f;
-	//TODO Gives a null, possible racing condition ?
 	if(DataSet==nullptr)
 	{
-		return totalSum;
+		return;
 	}
 	TArray<FName> rowNames=DataSet->GetRowNames();
 	
 	for (auto rowName : rowNames)
 	{
-		totalSum += DataSet->FindRow<FDummyDataStruct>(rowName, "")->OutVariable;
+		TotalDataSum += DataSet->FindRow<FDummyDataStruct>(rowName, "")->OutVariable;
 	}
-	
-	return totalSum;
 }
 
-float UCalculatePercentage::CalculateDataPercentage(float dataPoint=0.0f, float totalDataSum=1.0f)
+float UCalculatePercentage::CalculateDataPercentage(float dataPoint=0.0f)
 {
-		return (dataPoint*10.0f)/totalDataSum;
+	return (dataPoint*10.0f)/TotalDataSum;
 }
