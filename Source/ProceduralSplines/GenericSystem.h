@@ -13,9 +13,6 @@ class PROCEDURALSPLINES_API AGenericSystem : public AActor
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this actor's properties
-	AGenericSystem(); 
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System")
 		int GenericIndex=0;
 	
@@ -31,6 +28,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Generic System")
 	FString DataSetName;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System")
+		bool IsAlreadyPercentage=false;
+	
+public:
+	// Sets default values for this actor's properties
+	AGenericSystem(); 
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+	
 protected:
 	virtual void BeginPlay() override;
 
@@ -39,11 +45,6 @@ protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System")
 		TSubclassOf<AActor> GenericClass;
-
-
-public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 private:
 	UDataTable* CreateRunTimeDT();

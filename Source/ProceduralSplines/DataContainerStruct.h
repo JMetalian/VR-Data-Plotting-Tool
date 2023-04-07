@@ -34,5 +34,5 @@ struct FDummyDataStruct : public FTableRowBase
 	//~ The following member variable will be accessible by Blueprint Graphs:
 	// This is the tooltip for our test variable.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Test Variables")
-	int32 OutVariable = 0;
+	float OutVariable = 0;
 };
