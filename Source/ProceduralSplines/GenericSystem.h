@@ -30,7 +30,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System")
 		bool IsAlreadyPercentage=false;
-	
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void OnDataSetChanged();
+
 public:
 	// Sets default values for this actor's properties
 	AGenericSystem(); 
@@ -40,7 +43,7 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Generic System",meta=(EditConditionHides))
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Generic System",meta=(HideInDetailPanel))
 		int GenericIteratorLength=0;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System")
@@ -48,5 +51,6 @@ protected:
 
 private:
 	UDataTable* CreateRunTimeDT();
+	void RemoveGraphActors() const;
 	
 };

@@ -42,15 +42,15 @@ void AGenericSystem::Tick(float DeltaTime)
 
 UDataTable* AGenericSystem::CreateRunTimeDT()
 {
-	UClass* dataTableClasss = UDataTable::StaticClass(); // get a reference to the type of object we are going to use, in this case the basic DataTable, but you can have your own
-	UDataTable* runTimeDataTable = NewObject<UDataTable>(this, dataTableClasss, FName(TEXT("RunTimeTable"))); // create a new data table object
-	runTimeDataTable->RowStruct = FDummyDataStruct::StaticStruct(); // set what kind of row structure we are going to use for our table, we assume that you included the example row structure here
+	UClass* dataTableClasss = UDataTable::StaticClass();
+	UDataTable* runTimeDataTable = NewObject<UDataTable>(this, dataTableClasss, FName(TEXT("RunTimeTable"))); 
+	runTimeDataTable->RowStruct = FDummyDataStruct::StaticStruct(); 
 
 	//TODO Find a way to get the dataset dynamically
 	FString path = "/DataFolder/";
-	TArray<FString> CSVLines = CSVLoader::GetCSVFile(path.Append(DataSetName).Append(".csv")); // assuming you follow our example, load the csv as an array of strings
+	TArray<FString> CSVLines = CSVLoader::GetCSVFile(path.Append(DataSetName).Append(".csv"));
 
-	FDummyDataStruct rowType; // set the type of row we are going to use
+	FDummyDataStruct rowType; //Set the type of row we are going to use
 
 	//Iterate the csv lines and populate the row with the values from the csv
 	for (int i = 1; i < CSVLines.Num(); i++)
@@ -71,5 +71,16 @@ UDataTable* AGenericSystem::CreateRunTimeDT()
 		runTimeDataTable->AddRow(FName(*stringArray[0]), rowType);
 	}
 	return runTimeDataTable;
+}
+
+//Destory actors under ResponsibleActorInScene 
+void AGenericSystem::RemoveGraphActors() const
+{
+	TArray<AActor*> childrenActors;
+	ResponsibleActorInScene->GetAttachedActors(childrenActors);
+	for (AActor* Child : childrenActors)
+	{
+		Child->Destroy();
+	}
 }
 
