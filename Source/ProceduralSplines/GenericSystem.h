@@ -34,6 +34,7 @@ public:
 public:
 	// Sets default values for this actor's properties
 	AGenericSystem();
+	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	
@@ -53,7 +54,6 @@ protected:
 		AActor* TestingInputActor=nullptr;
 
 protected:
-	
 	virtual void BeginPlay() override;
 
 	//Use it before creating new graph actors
