@@ -31,26 +31,35 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System")
 		bool IsAlreadyPercentage=false;
 
-	UFUNCTION(BlueprintImplementableEvent)
-		void OnDataSetChanged();
-
 public:
 	// Sets default values for this actor's properties
-	AGenericSystem(); 
+	AGenericSystem();
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	
 protected:
-	virtual void BeginPlay() override;
-
+	
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Generic System",meta=(HideInDetailPanel))
 		int GenericIteratorLength=0;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System")
 		TSubclassOf<AActor> GenericClass;
 
-private:
-	UDataTable* CreateRunTimeDT();
+	UFUNCTION(BlueprintCallable, Category = "Generic System")
+	void DataSetCreation();
+	
+	//Test Purpose
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System/Testing")
+		AActor* TestingInputActor=nullptr;
+
+protected:
+	
+	virtual void BeginPlay() override;
+
+	//Use it before creating new graph actors
+	UFUNCTION(BlueprintCallable, Category = "Generic System")
 	void RemoveGraphActors() const;
 	
+private:
+	UDataTable* CreateRunTimeDT();
 };

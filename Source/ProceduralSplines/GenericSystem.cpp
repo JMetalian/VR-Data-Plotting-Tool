@@ -15,11 +15,25 @@ AGenericSystem::AGenericSystem()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
+
+
 // Called when the game starts or when spawned
 void AGenericSystem::BeginPlay()
 {
 	Super::BeginPlay();
 
+	
+	
+}
+
+// Called every frame
+void AGenericSystem::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+}
+
+void AGenericSystem::DataSetCreation()
+{
 	auto percentageCalculator = FindComponentByClass<UCalculatePercentage>();
 	
 	if(IsUsingCSV)
@@ -31,14 +45,8 @@ void AGenericSystem::BeginPlay()
 	{
 		percentageCalculator->CalculateTotalDataSum(DataSet);
 	}
-	
 }
 
-// Called every frame
-void AGenericSystem::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
 
 UDataTable* AGenericSystem::CreateRunTimeDT()
 {
@@ -83,4 +91,3 @@ void AGenericSystem::RemoveGraphActors() const
 		Child->Destroy();
 	}
 }
-
