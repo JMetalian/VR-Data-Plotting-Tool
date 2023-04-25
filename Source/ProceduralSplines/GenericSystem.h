@@ -23,7 +23,7 @@ public:
 		UDataTable* DataSet=nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System")
-		bool IsUsingCSV;
+		bool IsCSVTypeUsed;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Generic System")
 	FString DataSetName;
@@ -46,9 +46,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System")
 		TSubclassOf<AActor> GenericClass;
 
-	UFUNCTION(BlueprintCallable, Category = "Generic System")
-	void DataSetCreation();
-	
 	//Test Purpose
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Generic System/Testing")
 		AActor* TestingInputActor=nullptr;
@@ -56,7 +53,10 @@ protected:
 protected:
 	virtual void BeginPlay() override;
 
-	//Use it before creating new graph actors
+	UFUNCTION(BlueprintCallable, Category = "Generic System")
+	void DataSetCreation();
+	
+	//Use it before creating a new graph actors
 	UFUNCTION(BlueprintCallable, Category = "Generic System")
 	void RemoveGraphActors() const;
 	

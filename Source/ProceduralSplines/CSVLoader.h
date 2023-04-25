@@ -14,8 +14,4 @@ public:
 	~CSVLoader();
 
 	static TArray<FString> GetCSVFile(FString Path);
-	
-	
-	
-	
 };

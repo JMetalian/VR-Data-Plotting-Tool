@@ -1,6 +1,5 @@
 ﻿
 #include "AssignRandomColor.h"
-
 #include "Kismet/KismetMathLibrary.h"
 
 
@@ -21,6 +20,7 @@ void UAssignRandomColor::TickComponent(float DeltaTime, ELevelTick TickType,
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 }
 
+//Assign random color
 void UAssignRandomColor::ColorizeBarrel()
 {
 	auto mesh = Owner->FindComponentByClass<UStaticMeshComponent>();
@@ -37,7 +37,3 @@ void UAssignRandomColor::ColorizeBarrel()
 		
 	}
 }
-
-
-
-

@@ -15,7 +15,6 @@ ADataContainerStruct::ADataContainerStruct()
 void ADataContainerStruct::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame

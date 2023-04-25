@@ -29,7 +29,7 @@ void AGenericSystem::DataSetCreation()
 {
 	auto percentageCalculator = FindComponentByClass<UCalculatePercentage>();
 	
-	if(IsUsingCSV)
+	if(IsCSVTypeUsed)
 	{
 		DataSet = CreateRunTimeDT();;
 		percentageCalculator->CalculateTotalDataSum(DataSet);
@@ -40,14 +40,14 @@ void AGenericSystem::DataSetCreation()
 	}
 }
 
-
 UDataTable* AGenericSystem::CreateRunTimeDT()
 {
 	UClass* dataTableClasss = UDataTable::StaticClass();
 	UDataTable* runTimeDataTable = NewObject<UDataTable>(this, dataTableClasss, FName(TEXT("RunTimeTable"))); 
 	runTimeDataTable->RowStruct = FDummyDataStruct::StaticStruct(); 
 
-	//TODO Find a way to get the dataset dynamically
+	//Write down the "Will be used CSV file name e.g "MyCSV" in editor. No extension needed.
+	//The file should be created under Content -> /DataFolder/ however, you can change the path. 
 	FString path = "/DataFolder/";
 	TArray<FString> CSVLines = CSVLoader::GetCSVFile(path.Append(DataSetName).Append(".csv"));
 
@@ -63,7 +63,8 @@ UDataTable* AGenericSystem::CreateRunTimeDT()
 		FString LineLabel = stringArray[0];
 		if ((LineLabel.Len() == 0)  || LineLabel.StartsWith("\";") || LineLabel.StartsWith(";"))
 		{
-			continue;	//Skip quotation or lines with no label.
+			//Skip quotation or lines with no label.
+			continue;	
 		}
 		//Extra quotation marks are removed.
 		rowType.OutVariable = FCString::Atoi(*stringArray[1].TrimQuotes());
@@ -74,7 +75,7 @@ UDataTable* AGenericSystem::CreateRunTimeDT()
 	return runTimeDataTable;
 }
 
-//Destory actors under ResponsibleActorInScene 
+//Destroy actors under ResponsibleActorInScene 
 void AGenericSystem::RemoveGraphActors() const
 {
 	TArray<AActor*> childrenActors;

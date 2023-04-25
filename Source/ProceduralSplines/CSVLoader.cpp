@@ -3,7 +3,6 @@
 
 #include "CSVLoader.h"
 
-
 CSVLoader::CSVLoader()
 {
 }
