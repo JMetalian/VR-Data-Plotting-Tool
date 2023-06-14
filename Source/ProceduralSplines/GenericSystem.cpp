@@ -31,14 +31,56 @@ void AGenericSystem::DataSetCreation()
 	
 	if(IsCSVTypeUsed)
 	{
-		DataSet = CreateRunTimeDT();;
-		percentageCalculator->CalculateTotalDataSum(DataSet);
+		Data_Table = CreateRunTimeDT();;
+		percentageCalculator->CalculateTotalDataSum(Data_Table);
 	}
 	else
 	{
-		percentageCalculator->CalculateTotalDataSum(DataSet);
+		percentageCalculator->CalculateTotalDataSum(Data_Table);
 	}
 }
+
+
+UDataTable* AGenericSystem::GetDataTableFromFolder()
+{
+	// //Create UDataTable variable, read the file from folder and return it.
+	UDataTable* DataTable = NewObject<UDataTable>();
+	// FString path = "/DataFolder/DataTableType/";
+	//
+	// FString file = FPaths::ProjectConfigDir();
+	// file.Append(DataTableTypeSetName);
+	//
+	// IPlatformFile& FileManager = FPlatformFileManager::Get().GetPlatformFile();
+	//
+	//
+	// FString FileContent;
+	// // Always first check if the file that you want to manipulate exist.
+	// if (FileManager.FileExists(*file))
+	// {
+	//
+	// 	
+	// 	// // We use the LoadFileToString to load the file into
+	// 	// if(FFileHelper::LoadFileToString(FileContent,*file,FFileHelper::EHashOptions::None))
+	// 	// {
+	// 	// 	// UE_LOG(LogTemp, Warning, TEXT("FileManipulation: Text From File: %s"), *FileContent);
+	// 	// }
+	// 	// else
+	// 	// {
+	// 	// 	UE_LOG(LogTemp, Warning, TEXT("FileManipulation: Did not load text from file"));
+	// 	// }
+	// }
+	// else
+	// {
+	// 	UE_LOG(LogTemp, Warning, TEXT("FileManipulation: ERROR: Can not read the file because it was not found."));
+	// 	UE_LOG(LogTemp, Warning, TEXT("FileManipulation: Expected file location: %s"),*file);
+	// }
+
+	
+
+	return DataTable;
+}
+	
+
 
 UDataTable* AGenericSystem::CreateRunTimeDT()
 {
@@ -48,8 +90,8 @@ UDataTable* AGenericSystem::CreateRunTimeDT()
 
 	//Write down the "Will be used CSV file name e.g "MyCSV" in editor. No extension needed.
 	//The file should be created under Content -> /DataFolder/ however, you can change the path. 
-	FString path = "/DataFolder/";
-	TArray<FString> CSVLines = CSVLoader::GetCSVFile(path.Append(DataSetName).Append(".csv"));
+	FString path = "/DataFolder/CSVType/";
+	TArray<FString> CSVLines = CSVLoader::GetCSVFile(path.Append(CSVDataSetName).Append(".csv"));
 
 	FDummyDataStruct rowType; //Set the type of row we are going to use
 
@@ -74,6 +116,7 @@ UDataTable* AGenericSystem::CreateRunTimeDT()
 	}
 	return runTimeDataTable;
 }
+
 
 //Destroy actors under ResponsibleActorInScene 
 void AGenericSystem::RemoveGraphActors() const
