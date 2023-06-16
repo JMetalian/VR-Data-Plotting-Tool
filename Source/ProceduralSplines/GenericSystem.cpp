@@ -41,47 +41,6 @@ void AGenericSystem::DataSetCreation()
 }
 
 
-UDataTable* AGenericSystem::GetDataTableFromFolder()
-{
-	// //Create UDataTable variable, read the file from folder and return it.
-	UDataTable* DataTable = NewObject<UDataTable>();
-	// FString path = "/DataFolder/DataTableType/";
-	//
-	// FString file = FPaths::ProjectConfigDir();
-	// file.Append(DataTableTypeSetName);
-	//
-	// IPlatformFile& FileManager = FPlatformFileManager::Get().GetPlatformFile();
-	//
-	//
-	// FString FileContent;
-	// // Always first check if the file that you want to manipulate exist.
-	// if (FileManager.FileExists(*file))
-	// {
-	//
-	// 	
-	// 	// // We use the LoadFileToString to load the file into
-	// 	// if(FFileHelper::LoadFileToString(FileContent,*file,FFileHelper::EHashOptions::None))
-	// 	// {
-	// 	// 	// UE_LOG(LogTemp, Warning, TEXT("FileManipulation: Text From File: %s"), *FileContent);
-	// 	// }
-	// 	// else
-	// 	// {
-	// 	// 	UE_LOG(LogTemp, Warning, TEXT("FileManipulation: Did not load text from file"));
-	// 	// }
-	// }
-	// else
-	// {
-	// 	UE_LOG(LogTemp, Warning, TEXT("FileManipulation: ERROR: Can not read the file because it was not found."));
-	// 	UE_LOG(LogTemp, Warning, TEXT("FileManipulation: Expected file location: %s"),*file);
-	// }
-
-	
-
-	return DataTable;
-}
-	
-
-
 UDataTable* AGenericSystem::CreateRunTimeDT()
 {
 	UClass* dataTableClasss = UDataTable::StaticClass();
@@ -109,7 +68,7 @@ UDataTable* AGenericSystem::CreateRunTimeDT()
 			continue;	
 		}
 		//Extra quotation marks are removed.
-		rowType.OutVariable = FCString::Atoi(*stringArray[1].TrimQuotes());
+		rowType.OutVariable = FCString::Atof(*stringArray[1].TrimQuotes());
 
 		// Add the row to DT.
 		runTimeDataTable->AddRow(FName(*stringArray[0]), rowType);
