@@ -49,7 +49,7 @@ UDataTable* AGenericSystem::CreateRunTimeDT()
 
 	//Write down the "Will be used CSV file name e.g "MyCSV" in editor. No extension needed.
 	//The file should be created under Content -> /DataFolder/ however, you can change the path. 
-	FString path = "/DataFolder/CSVType/";
+	FString path = CSVDataPath;
 	TArray<FString> CSVLines = CSVLoader::GetCSVFile(path.Append(CSVDataSetName).Append(".csv"));
 
 	FDummyDataStruct rowType; //Set the type of row we are going to use

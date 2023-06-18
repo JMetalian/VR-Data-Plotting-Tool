@@ -24,15 +24,16 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data Set Settings")
 		bool IsCSVTypeUsed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data Set Settings")
+		FString CSVDataPath = "/DataFolder/CSVType/";
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Data Set Settings")
 		FString CSVDataSetName;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Data Set Settings")
 		UDataTable* Data_Table=nullptr;
-	
-	// UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Data Set Settings")
-	// 	FString DataTableTypeSetName;
+
 
 public:
 	// Sets default values for this actor's properties
