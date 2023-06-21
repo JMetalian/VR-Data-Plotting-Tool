@@ -34,7 +34,13 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Data Set Settings")
 		UDataTable* Data_Table=nullptr;
 
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Data Set Settings")
+		bool IsDataMapUsed=false;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Data Set Settings")
+		TMap<FName,float> DataMap = {};
 
+	
 public:
 	// Sets default values for this actor's properties
 	AGenericSystem();
@@ -67,7 +73,6 @@ protected:
 private:
 	UDataTable* CreateRunTimeDT();
 
-	UDataTable* GetDataTableFromFolder();
-	
+	static TMap<FName,float> CreateGraphFromDataMap(const TMap<FName,float>& DataMap);
 	
 };

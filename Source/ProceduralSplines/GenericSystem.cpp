@@ -17,6 +17,16 @@ AGenericSystem::AGenericSystem()
 void AGenericSystem::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	// TESTING PURPOSES FOR DATA MAP
+	if(IsDataMapUsed)
+	{
+		DataMap.Add("G", 0.6f);
+		DataMap.Add("H", 0.7f);
+		DataMap.Add("I", 0.8f);
+		DataMap.Add("J", 0.9f);
+	}
+	///////////////////////////////
 }
 
 // Called every frame
@@ -46,8 +56,7 @@ UDataTable* AGenericSystem::CreateRunTimeDT()
 	UClass* dataTableClasss = UDataTable::StaticClass();
 	UDataTable* runTimeDataTable = NewObject<UDataTable>(this, dataTableClasss, FName(TEXT("RunTimeTable"))); 
 	runTimeDataTable->RowStruct = FDummyDataStruct::StaticStruct(); 
-
-	//Write down the "Will be used CSV file name e.g "MyCSV" in editor. No extension needed.
+	
 	//The file should be created under Content -> /DataFolder/ however, you can change the path. 
 	FString path = CSVDataPath;
 	TArray<FString> CSVLines = CSVLoader::GetCSVFile(path.Append(CSVDataSetName).Append(".csv"));
@@ -74,6 +83,13 @@ UDataTable* AGenericSystem::CreateRunTimeDT()
 		runTimeDataTable->AddRow(FName(*stringArray[0]), rowType);
 	}
 	return runTimeDataTable;
+}
+
+TMap<FName,float> AGenericSystem::CreateGraphFromDataMap(const TMap<FName, float>& DataMap)
+{
+	TMap<FName, float> GraphDataMap = {};
+	GraphDataMap=DataMap;
+	return GraphDataMap;
 }
 
 
