@@ -21,10 +21,15 @@ void AGenericSystem::BeginPlay()
 	// TESTING PURPOSES FOR DATA MAP
 	if(IsDataMapUsed)
 	{
-		DataMap.Add("G", 0.6f);
-		DataMap.Add("H", 0.7f);
-		DataMap.Add("I", 0.8f);
-		DataMap.Add("J", 0.9f);
+		// DataMap.Add("G", 0.6f);
+		// DataMap.Add("H", 0.7f);
+		// DataMap.Add("I", 0.8f);
+		// DataMap.Add("J", 0.9f);
+
+		DataMap.Add("G", 6);
+		DataMap.Add("H", 7);
+		DataMap.Add("I", 8);
+		DataMap.Add("J", 9);
 	}
 	///////////////////////////////
 }
@@ -46,7 +51,14 @@ void AGenericSystem::DataSetCreation()
 	}
 	else
 	{
-		percentageCalculator->CalculateTotalDataSum(Data_Table);
+		if(IsDataMapUsed)
+		{
+			percentageCalculator->CalculateTotalDataSum(DataMap);
+		}
+		else
+		{
+			percentageCalculator->CalculateTotalDataSum(Data_Table);
+		}
 	}
 }
 

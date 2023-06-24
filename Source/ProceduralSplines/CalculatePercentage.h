@@ -26,8 +26,11 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType,
 	                           FActorComponentTickFunction* ThisTickFunction) override;
 
-	UFUNCTION(BlueprintCallable, Category = "Calculate Total Data Sum")
+	// UFUNCTION(BlueprintCallable, Category = "Calculate Total Data Sum")
 	void CalculateTotalDataSum(UDataTable* DataSet);
+	
+	// UFUNCTION(BlueprintCallable, Category = "Calculate Total Data Sum")
+	void CalculateTotalDataSum(const TMap<FName,float>& DataMap);
 	
 	UFUNCTION(BlueprintCallable, Category = "Calculate Percentage of Datas")
 	float CalculateDataPercentage(float dataPoint);

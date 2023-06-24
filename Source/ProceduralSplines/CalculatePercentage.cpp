@@ -35,7 +35,25 @@ void UCalculatePercentage::CalculateTotalDataSum(UDataTable* DataSet)
 	}
 }
 
+void UCalculatePercentage::CalculateTotalDataSum(const TMap<FName, float>& DataMap)
+{
+	if(DataMap.Num()==0)
+	{
+		return;
+	}
+	//Get the values in the data map and sum them up to get the total data sum
+	TArray<float> dataValues;
+	DataMap.GenerateValueArray(dataValues);
+	for (auto dataValue : dataValues)
+	{
+		TotalDataSum += dataValue;
+	}
+	
+
+	
+}
+
 float UCalculatePercentage::CalculateDataPercentage(float dataPoint=0.0f)
 {
-	return (dataPoint*10.0f)/TotalDataSum;
+	return ((dataPoint*100.0f)/TotalDataSum)/100.0f;
 }
