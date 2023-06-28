@@ -36,7 +36,9 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Data Set Settings")
 		bool IsDataMapUsed=false;
-	
+
+	//Set this DataMap from external classes to re-assign the DataMap
+	//for new graph values.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Data Set Settings")
 		TMap<FName,float> DataMap = {};
 

@@ -18,18 +18,20 @@ void AGenericSystem::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	// TESTING PURPOSES FOR DATA MAP
+	// TESTING PURPOSES FOR DATA MAP	
 	if(IsDataMapUsed)
 	{
-		// DataMap.Add("G", 0.6f);
-		// DataMap.Add("H", 0.7f);
-		// DataMap.Add("I", 0.8f);
-		// DataMap.Add("J", 0.9f);
+		//Already percentage form test data
+		DataMap.Add("G", 0.6f);
+		DataMap.Add("H", 0.7f);	
+		DataMap.Add("I", 0.8f);
+		DataMap.Add("J", 0.9f);
 
-		DataMap.Add("G", 6);
-		DataMap.Add("H", 7);
-		DataMap.Add("I", 8);
-		DataMap.Add("J", 9);
+		//Not percentage form test data 
+		// DataMap.Add("G", 6);
+		// DataMap.Add("H", 7);
+		// DataMap.Add("I", 8);
+		// DataMap.Add("J", 9);
 	}
 	///////////////////////////////
 }
